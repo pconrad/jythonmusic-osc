@@ -7,7 +7,13 @@ from random import *
 def msg_1_pos_lhand(message): 
   args = message.getArguments()  # get OSC message's arguments
   print "args=",str(args)
-  pitch = mapValue(args[0], -0.5, 1.2, 0, 128)
+  
+  lowestExpectedValue = -0.7
+  highestExpectedValue = 1.2
+  
+  myArg = args[0]
+  myArg = max(lowestExpectedValue,min(highestExpectedValue,myArg))
+  pitch = mapValue(myArg, lowestExpectedValue,highestExpectedValue, 0, 128)
   print "pitch = ", pitch
   Play.note(pitch, 0, 1000, 100)
 
